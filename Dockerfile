@@ -12,12 +12,13 @@ RUN \
   add-apt-repository ppa:libretro/stable && \
   apt-get update && \
   apt-get install -y libretro-* retroarch* && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/bin/qemu-*-static
+  apt-get clean
 
 RUN adduser --disabled-password --gecos '' retroarch \
  && adduser retroarch sudo \
  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/bin/qemu-*-static
 
 USER retroarch
 
